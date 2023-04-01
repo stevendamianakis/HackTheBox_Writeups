@@ -2,8 +2,6 @@
 
 **A machine with a web service that converts a local web-page to a PDF, which is vulnerable to command injection.**
 
-get the rev shell, and for privilege escalation, use code execution through yaml deserialization attack.
-
 First of all, we should add the ip of the machine into the hosts folder. This is sometimes needed for the DNS resolution.
 
 - Go to etc/hosts and add the line "10.10.11.189 precious.htb". Save the file and open your vpn document with "openvpn name_of_vpn_document" from the terminal.
