@@ -2,7 +2,7 @@
 
 **A machine with a web service that is created using a web based php file manager that has a path traversal vulnerability in the file upload functionality, and a subdomain, which is vulnerable to blind SQL Injection over websocket.**
 
-After exploring the web page, we can do not find any entry point. Let's use gobuster tool to search for directories and files in the websites:
+After exploring the web page, we do not find any entry point. Let's use gobuster tool to search for directories and files in the website:
 
 ```
 gobuster dir -u http://soccer.htb/ -w /usr/share/wordlists/dirb/big.txt
