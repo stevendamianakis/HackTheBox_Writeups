@@ -1,6 +1,6 @@
 # Busqueda HTB machine
 
-** A machine with a web service that uses a vulnerable python library for generating search queries. **
+**A machine with a web service that uses a vulnerable python library for generating search queries.**
 
 - After exploring the web page, we can find information about the website. As it is stated at the bottom of the page "Powered by Flask and Searchor 2.4.0". After gathering information about Searchor 2.4.0, we found out that it is vulnerable to Arbitrary Code Execution(CWE-94), as stated in the following article:
 
